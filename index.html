@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Carte collaborative pour les chemins forestiers</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!-- importation de leaflet-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+        <!-- importation de la libraire leaflet.draw (permet de dessiner des entitées)-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+        <!-- importation de la libraire leaflet.mini-map (permet d'ajouter une mini carte)-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+
+        <!-- importation de jquery et de bootstrap-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <link rel="stylesheet" href="css/leaflet.legend.css">
+        <script src="plugins/leaflet.legend.js"></script>
+
+        <!-- script css pour styliser different aspect de la carte-->
+        <link rel="stylesheet" href="css/perso.css">
+        <!-- importation de fonction pour le besoin de l'application-->
+        <script src="js/initCarte.js"></script>
+        <script src="js/delete.js"></script>
+        <script src="js/form.js"></script>
+        <script src="js/insert.js"></script>
+        <script src="js/makeLegend.js"></script>
+        <script src="js/outil_control.js"></script>
+        <script src="js/update.js"></script>
+        <script src="js/upload.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="map"></div>
+        
+        <script>
+
+            //script qui permet d'initialiser la carte (voir initCarte.js)
+            initCarte();
+            //fonction qui permet plusieurs control de la carte (voir outil_control.js)
+            outil_control();
+            //permet d'uploader la couche de donner à partir de protocole ajax (voir upload.js)
+            upload();
+
+            //fonction qui permet d'updater les attributs d'une ligne (voir update.js)
+            document.addEventListener("click", setUpdate);
+
+            //fonction qui permet de supprimer des entitées (voir delete.js)
+            document.addEventListener("click", setDelete);
+
+            // Fonction qui permet d'ajouter une nouvelle ligne dans la bd (voir insert.js)
+            document.addEventListener("click", setInsert);
+
+            //fonction qui permet d'afficher une légende
+            makeLegend();
+        </script>
+    </body>
+</html>
+
