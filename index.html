@@ -33,7 +33,7 @@
         <script src="js/form.js"></script>
         <script src="js/insert.js"></script>
         <script src="js/makeLegend.js"></script>
-        <script src="js/outil_control.js"></script>
+        <script src="js/miniMap.js"></script>
         <script src="js/update.js"></script>
         <script src="js/upload.js"></script>
 
@@ -43,27 +43,31 @@
 
         <div id="map"></div>
         
+
         <script>
 
             //script qui permet d'initialiser la carte (voir initCarte.js)
             initCarte();
-            //fonction qui permet plusieurs control de la carte (voir outil_control.js)
-            outil_control();
+
+            //fonction qui permet plusieurs control de la carte (voir miniMap.js)
+            miniMap();
+
             //permet d'uploader la couche de donner à partir de protocole ajax (voir upload.js)
             upload();
 
             //fonction qui permet d'updater les attributs d'une ligne (voir update.js)
-            document.addEventListener("click", setUpdate);
+            document.addEventListener("click", update);
 
-            //fonction qui permet de supprimer des entitées (voir delete.js)
-            document.addEventListener("click", setDelete);
+            //fonction qui permet de supprimer des entitées (voir update.js)
+            document.addEventListener("click", remove);
 
             // Fonction qui permet d'ajouter une nouvelle ligne dans la bd (voir insert.js)
-            document.addEventListener("click", setInsert);
+            document.addEventListener("click", insert);
 
             //fonction qui permet d'afficher une légende
             makeLegend();
+
+            
         </script>
     </body>
 </html>
-
