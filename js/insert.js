@@ -4,7 +4,6 @@ function insert(e) {
     if(e.target && e.target.id == "submit") {
 
         //importation des valeurs dans le formulaire de popup 
-        let entered_id = document.getElementById("input_id").value;
         let entered_cls_chefor = document.getElementById("input_cls_chefor").value;
         let entered_nomrte = document.getElementById("input_nomrte").value;
         let entered_an_classi = document.getElementById("input_an_classi").value;
@@ -21,7 +20,7 @@ function insert(e) {
             function insertData(){
                 //requete sql pour ajouter une entité à partir d'un protocole AJAX à l'aide d'un formulaire php
                 $.ajax({
-                    url: "php/insert.php?draw=" + drawing + "&id=" + entered_id + "&cls_chefor=" + entered_cls_chefor + "&nomrte=" + entered_nomrte + "&an_classi=" + entered_an_classi + "&no_chefor=" + entered_no_chefor + "&gestion=" + entered_gestion + "&source=" + entered_source
+                    url: "php/insert.php?draw=" + drawing + "&cls_chefor=" + entered_cls_chefor + "&nomrte=" + entered_nomrte + "&an_classi=" + entered_an_classi + "&no_chefor=" + entered_no_chefor + "&gestion=" + entered_gestion + "&source=" + entered_source
                 })
             }
 
@@ -34,9 +33,20 @@ function insert(e) {
         drawnItems.closePopup();
         drawnItems.clearLayers();
 
+        //fonction qui permet d'attendre le temps que la requête sql passe avant de redessiner
+        function wait(ms){
+            var start = new Date().getTime();
+            var end = start;
+            while(end < start + ms) {
+              end = new Date().getTime();
+           }
+         }
+
+        //waiting...........
+        wait(100);
+
         //fonction pour redessiner la couche après mise à jour de la bd
         redraw();
-
     }
-    
 }
+

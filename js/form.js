@@ -7,7 +7,6 @@ var couche;
 function insertPopup() {
     popupContent = 
         '<form>' + 
-        'ID:<br><input type="text" id="input_id"><br>' +
         'Classe de chemin forestier:<br>'+
             '<select id="input_cls_chefor">'+
                 '<option value="01">01</option>'+

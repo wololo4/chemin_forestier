@@ -27,7 +27,7 @@ function update(e) {
         //appel de la fonction pour mettre à jour
         updateData();
 
-        //fonction qui permet de redessiner les entitées après modification
+        //fonction pour redessiner la couche mise à jour
         redraw();
     }
 }

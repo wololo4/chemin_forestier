@@ -18,5 +18,6 @@ function remove(e) {
 
         //fonction pour redessiner la couche mise à jour
         redraw();
+
     }
 }
