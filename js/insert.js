@@ -1,9 +1,9 @@
-// Submission - Sending to CARTO
+//fonction qui permet d'ajouter de nouvelles entitées
 function insert(e) {
-
+    //lorsque le boutton "submit" est enclencher
     if(e.target && e.target.id == "submit") {
 
-        // Get user name and description
+        //importation des valeurs dans le formulaire de popup 
         let entered_id = document.getElementById("input_id").value;
         let entered_cls_chefor = document.getElementById("input_cls_chefor").value;
         let entered_nomrte = document.getElementById("input_nomrte").value;
@@ -14,16 +14,18 @@ function insert(e) {
         
         // For each drawn layer
         drawnItems.eachLayer(function(layer) {
-        
-        // Create SQL expression to insert layer
+            //importation du geojson de la nouvelle entité dessiner
             let drawing = JSON.stringify(layer.toGeoJSON().geometry);
 
+            //fonction qui permet d'ajouter une nouvelle entité dans la bd
             function insertData(){
+                //requete sql pour ajouter une entité à partir d'un protocole AJAX à l'aide d'un formulaire php
                 $.ajax({
                     url: "php/insert.php?draw=" + drawing + "&id=" + entered_id + "&cls_chefor=" + entered_cls_chefor + "&nomrte=" + entered_nomrte + "&an_classi=" + entered_an_classi + "&no_chefor=" + entered_no_chefor + "&gestion=" + entered_gestion + "&source=" + entered_source
                 })
             }
 
+            //appel de la fonction
             insertData();
 
         });
@@ -32,33 +34,9 @@ function insert(e) {
         drawnItems.closePopup();
         drawnItems.clearLayers();
 
+        //fonction pour redessiner la couche après mise à jour de la bd
+        redraw();
+
     }
     
-}
-
-// Create editable popup
-function createFormPopup() {
-    let popupContent = 
-        '<form>' + 
-        'ID:<br><input type="text" id="input_id"><br>' +
-        'Classe de chemin forestier:<br>'+
-            '<select id="input_cls_chefor">'+
-                '<option value="01">01</option>'+
-                '<option value="02">02</option>'+
-                '<option value="03">03</option>'+
-                '<option value="04">04</option>'+
-                '<option value="05">05</option>'+
-                '<option value="HI">HI</option>'+
-                '<option value="IN" selected="selected">IN</option>'+
-                '<option value="NF">NF</option>'+
-            '</select>'+
-        '<br>' +
-        'Nom de la route:<br><input type="text" id="input_nomrte"><br>' +
-        'Année de classification:<br><input type="text" id="input_an_classi"><br>' +
-        'Numéro du chemin:<br><input type="text" id="input_no_chefor"><br>' +
-        'Gestion:<br><input type="text" id="input_gestion"><br>' +
-        'Source:<br><input type="text" id="input_source"><br>' +
-        '<input type="button" value="Submit" id="submit">' + 
-        '</form>';
-    drawnItems.bindPopup(popupContent).openPopup();
 }

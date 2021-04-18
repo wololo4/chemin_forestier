@@ -34,6 +34,7 @@
         <script src="js/insert.js"></script>
         <script src="js/makeLegend.js"></script>
         <script src="js/miniMap.js"></script>
+        <script src="js/redraw.js"></script>
         <script src="js/update.js"></script>
         <script src="js/upload.js"></script>
 
@@ -49,9 +50,6 @@
             //script qui permet d'initialiser la carte (voir initCarte.js)
             initCarte();
 
-            //fonction qui permet plusieurs control de la carte (voir miniMap.js)
-            miniMap();
-
             //permet d'uploader la couche de donner à partir de protocole ajax (voir upload.js)
             upload();
 
@@ -63,11 +61,8 @@
 
             // Fonction qui permet d'ajouter une nouvelle ligne dans la bd (voir insert.js)
             document.addEventListener("click", insert);
-
-            //fonction qui permet d'afficher une légende
-            makeLegend();
-
             
         </script>
     </body>
 </html>
+
